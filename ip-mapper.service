@@ -1,0 +1,17 @@
+[Unit]
+Description=IP Mapper for Pteradoctyl
+After=docker.service
+Requires=docker.service
+PartOf=docker.service
+
+[Service]
+Type=simple
+WorkingDirectory=/scripts
+ExecStart=bash /scripts/ip-mapper.sh
+Restart=on-failure
+StartLimitInterval=180
+StartLimitBurst=30
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target
